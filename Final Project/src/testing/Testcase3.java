@@ -1,0 +1,66 @@
+package testing;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Testcase3 {
+
+	WebDriver driver;
+	JavascriptExecutor jse;
+
+	public void invokeBrowser() {
+	try {
+	System.setProperty("webdriver.chrome.driver", "C:\\Users\\laksh\\Desktop\\chromedriver_win32\\chromedriver.exe");
+	driver=new ChromeDriver();
+	driver.manage().deleteAllCookies();
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+
+	driver.get("http://localhost:3000/Home");
+	registeruser();
+	} catch (Exception e) {
+
+	e.printStackTrace();
+	}
+	}
+	public void registeruser() {
+	try {
+		driver.findElement(By.linkText("Login")).click();
+	jse =(JavascriptExecutor)driver;// Code for scrolling the page down
+	jse.executeScript("scroll(0,500)");
+	Thread.sleep(2000);
+	driver.findElement(By.linkText("Register User")).click();
+	jse =(JavascriptExecutor)driver;// Code for scrolling the page down
+	jse.executeScript("scroll(0,500)");
+	driver.findElement(By.cssSelector("input[id='username']")).sendKeys("Lakshman1");
+	Thread.sleep(2000);
+	driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Hello123");
+	Thread.sleep(2000);
+	driver.findElement(By.cssSelector("input[type='email']")).sendKeys("sai@gmail.com");
+	Thread.sleep(2000);
+	driver.findElement(By.cssSelector("input[type='Phone']")).sendKeys("7643989");
+	Thread.sleep(2000);
+	driver.findElement(By.cssSelector("input[type='submit']")).click();
+	
+
+
+	} catch (Exception e) {
+
+	e.printStackTrace();
+	}
+
+	}
+	public static void main(String[] args) {
+
+	Testcase3 t1=new Testcase3();
+	t1.invokeBrowser();
+
+	}
+
+	}
+
